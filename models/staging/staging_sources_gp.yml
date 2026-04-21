@@ -1,0 +1,9 @@
+version: 2
+sources: 
+
+- name: project_data # each source has a name
+  schema: aero_insights # if it will be public, we can get an error (probably there are no tables like this there)
+  tables:
+    - name: airports
+    - name: weather_daily_raw
+    - name: flights_all
