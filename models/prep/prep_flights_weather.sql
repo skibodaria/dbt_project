@@ -15,7 +15,7 @@ WITH flights_daily AS (
 ),
 weather_daily AS (
     SELECT
-        airport_code,
+        airport_code AS faa,
         date,
         avg_temp_c,
         min_temp_c,
@@ -29,7 +29,7 @@ weather_daily AS (
 joined AS (
     SELECT
         f.flight_date,
-        f.origin,
+        f.faa,
         f.total_flights,
         f.cancelled_flights,
         f.diverted_flights,
@@ -49,7 +49,7 @@ joined AS (
         END AS period_type
     FROM flights_daily f
     LEFT JOIN weather_daily w
-        ON f.faa = w.airport_code
+        ON f.faa = w.faa
        AND f.flight_date = w.date
 )
 SELECT *
