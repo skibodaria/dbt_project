@@ -54,4 +54,4 @@ joined AS (
 )
 SELECT *
 FROM joined
-ORDER BY flight_date, airport_code
+ORDER BY flight_date, faa
