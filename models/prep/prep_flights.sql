@@ -26,7 +26,7 @@ flights_cleaned AS (
         (distance / 0.621371)::NUMERIC(6,2) AS distance_km,
         cancelled,
         diverted
-    FROM flights_all
+    FROM flights_one_month
 )
 SELECT *
 FROM flights_cleaned
