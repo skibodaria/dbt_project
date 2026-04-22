@@ -2,7 +2,7 @@ WITH departures AS (
     SELECT 
     	origin, 
     	flight_date, 
-    	COUNT(*) AS count_out,
+    	COUNT(*) AS flights_out,
     	SUM(COALESCE(cancelled, 0)) AS cancelled_flights_o,
         SUM(COALESCE(diverted, 0)) AS diverted_flights_o,
         ROUND(SUM(COALESCE(cancelled, 0)) * 100.0 / COUNT(*), 2) AS cancellation_rate_o,
@@ -19,7 +19,7 @@ arrivals AS (
     SELECT 
     	dest, 
     	flight_date, 
-    	COUNT(*) AS count_in,
+    	COUNT(*) AS flights_in,
     	SUM(COALESCE(cancelled, 0)) AS cancelled_flights_d,
         SUM(COALESCE(diverted, 0)) AS diverted_flights_d,
         ROUND(SUM(COALESCE(cancelled, 0)) * 100.0 / COUNT(*), 2) AS cancellation_rate_d,
@@ -37,15 +37,15 @@ airport_stats AS (
 		d.flight_date AS date,
 		d.count_out,
 		a.count_in,
-		d.count_out + a.count_in AS total_traffic,
+		d.count_out + a.count_in AS total_flights,
 		d.cancellation_rate_o AS origin_cancelled_rate,
 		a.cancellation_rate_d AS dest_cancelled_rate,
 		d.cancelled_flights_o + a.cancelled_flights_d AS total_cancelled_num,
 		d.diverted_flights_o + a.diverted_flights_d AS total_diverted_num,
 		d.diverted_rate_o AS origin_diverted_rate,
 		a.diverted_rate_d AS dest_diverted_rate,
-		d.avg_dep_delay_o AS avg_dep_del,
-		a.avg_arr_delay_d AS avg_arr_del
+		d.avg_dep_delay_o AS avg_dep_delay,
+		a.avg_arr_delay_d AS avg_arr_delay
 	FROM departures d
 	JOIN arrivals a ON d.origin = a.dest AND d.flight_date=a.flight_date
 	)
