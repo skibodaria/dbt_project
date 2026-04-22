@@ -12,7 +12,7 @@ WITH departures AS (
     --FROM prep_flights
     FROM{{ref('prep_flights')}}
     WHERE origin IN ('JFK','ATL','BOS', 'EWR', 'ORD')
-      AND flight_date BETWEEN '2022-12-22' AND '2022-12-22'
+      AND flight_date BETWEEN '2022-12-01' AND '2022-12-31'
     GROUP BY origin, flight_date
 ),
 arrivals AS (
@@ -26,16 +26,15 @@ arrivals AS (
         ROUND(SUM(COALESCE(diverted, 0)) * 100.0 / COUNT(*), 2) AS diverted_rate_d,
         --AVG(dep_delay)* INTERVAL '1 min' AS avg_dep_delay_d,
         AVG(arr_delay)* INTERVAL '1 min' AS avg_arr_delay_d
-    --FROM prep_flights 
-    FROM{{ref('prep_flights')}}
+    FROM{{ref('prep_flights')}} 
     WHERE dest IN ('JFK','ATL','BOS', 'EWR', 'ORD')
-      AND flight_date BETWEEN '2022-12-22' AND '2022-12-22'
+      AND flight_date BETWEEN '2022-12-01' AND '2022-12-31'
     GROUP BY dest, flight_date
 ), 
 airport_stats AS (
 	SELECT
 		d.origin AS airport_code,
-		d.flight_date,
+		d.flight_date AS date,
 		d.count_out,
 		a.count_in,
 		d.count_out + a.count_in AS total_traffic,
@@ -53,5 +52,5 @@ airport_stats AS (
 SELECT *
 	FROM airport_stats AS astat
 JOIN {{ref('staging_weather_daily')}}  AS w
-ON astat.airport_code = w.airport_code AND astat.flight_date=w.date
-ORDER BY flight_date, astat.airport_code
+	USING (airport_code, date)
+ORDER BY date, astat.airport_code
