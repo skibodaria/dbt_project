@@ -35,9 +35,9 @@ airport_stats AS (
 	SELECT
 		d.origin AS airport_code,
 		d.flight_date AS date,
-		d.count_out,
-		a.count_in,
-		d.count_out + a.count_in AS total_flights,
+		d.flights_out,
+		a.flights_in,
+		d.flights_out + a.flights_in AS total_flights,
 		d.cancellation_rate_o AS origin_cancelled_rate,
 		a.cancellation_rate_d AS dest_cancelled_rate,
 		d.cancelled_flights_o + a.cancelled_flights_d AS total_cancelled_num,
