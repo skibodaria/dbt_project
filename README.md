@@ -53,4 +53,6 @@ During Winter Storm Elliott (December 21–28, 2022), a massive "bomb cyclone" a
 
 ## Repo's Structure
 * `/analyses`, `/macros`, `/seeds`, `/snapshots`, `/tests`, and `/models` are native folders for the `dbt Cloud` data processing; main models we used to transform data (for staging, preparation and mart) can be found in [`/models`](https://github.com/skibodaria/dbt_project/tree/main/models)
-* [`/group_work`]() contains Jupiter Notebooks for extracting, cleaning, and analyzing data;
+* [`/group_work`](https://github.com/skibodaria/dbt_project/tree/main/group_work) contains Jupiter Notebooks for extracting, cleaning, and analyzing data;
+    * [`flights_data_wrangling.ipynb](https://github.com/skibodaria/dbt_project/blob/main/group_work/01_fligths_data_wrangling.ipynb): extract + read + transform + upload to `PostgreSQL` database;
+    * [`06_main_analysis.ipynb](): descriptive stats for weather, airports' performances, and for hypotheses testing;
