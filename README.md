@@ -1,5 +1,5 @@
 # `dbt`Project | Winter Storm Elliot (2022) and Its Effects on Airport Performances
-During the `dbt` module as a part of curriculum at [Spiced Academy / neuefische GmbH] our team executed a research project. The goal was to identify a particular weather event and see how it affected the performance of several airports (flights' delays and cancellations).<br>
+During the `dbt` module as a part of curriculum at [Spiced Academy / neuefische GmbH](https://www.spiced-academy.com/en) our team executed a research project. The goal was to identify a particular weather event and see how it affected the performance of several airports (flights' delays and cancellations).<br>
 
 The project was executed by:
 * [Kai Nägle](https://github.com/kainaegle)
