@@ -50,3 +50,7 @@ During Winter Storm Elliott (December 21–28, 2022), a massive "bomb cyclone" a
     * strong negative correlation between temperature and delays/cancellations;
     * moderate positive colleration between average wind speed and disruptions;
     * surprise: precipitation has a very weak correlation with cancellations and delays.
+
+## Repo's Structure
+* `/analyses`, `/macros`, `/seeds`, `/snapshots`, `/tests`, and `/models` are native folders for the `dbt Cloud` data processing; main models we used to transform data (for staging, preparation and mart) can be found in [`/models`](https://github.com/skibodaria/dbt_project/tree/main/models)
+* [`/group_work`]() contains Jupiter Notebooks for extracting, cleaning, and analyzing data;
